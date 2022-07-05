@@ -1,11 +1,17 @@
-import { Header } from '@components/Header';
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import { LoginHeader, LoginContent } from '@components/Login';
 
-function Home() {
+const Login: NextPage = () => {
   return (
-    <div>
-      <Header />
+    <div className='space-y-10 relative'>
+      <Head>
+        <title>Linkedin Sign In</title>
+      </Head>
+      <LoginHeader />
+      <LoginContent />
     </div>
   );
-}
+};
 
-export default Home;
+export default Login;

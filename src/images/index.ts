@@ -1,3 +1,4 @@
-import HeaderLogo from './logo.svg';
+import WideLogo from './logo-wide.svg';
+import IllustLogin from './illust01.svg';
 
-export { HeaderLogo };
+export { WideLogo, IllustLogin };
