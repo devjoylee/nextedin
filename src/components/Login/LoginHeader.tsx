@@ -10,12 +10,12 @@ export const LoginHeader = () => {
         <WideLogo />
       </div>
       <div className='flex items-center sm:divide-x divide-gray-300'>
-        <div className='hidden sm:flex space-x-8 pr-4'>
-          <HeaderLink text='Discover' Icon={<IoMdCompass />} />
-          <HeaderLink text='People' Icon={<MdPeopleAlt />} />
-          <HeaderLink text='Learning' Icon={<MdOutlineSmartDisplay />} />
-          <HeaderLink text='Jobs' Icon={<IoMdBriefcase />} />
-        </div>
+        <ul className='hidden sm:flex space-x-8 pr-4'>
+          <HeaderLink text='Discover' Icon={<IoMdCompass />} login />
+          <HeaderLink text='People' Icon={<MdPeopleAlt />} login />
+          <HeaderLink text='Learning' Icon={<MdOutlineSmartDisplay />} login />
+          <HeaderLink text='Jobs' Icon={<IoMdBriefcase />} login />
+        </ul>
         <div className='pl-4'>
           <button className='text-blue-700 font-semibold rounded-full border border-blue-700 px-5 py-1.5'>
             Sign In

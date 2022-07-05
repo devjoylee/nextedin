@@ -6,7 +6,7 @@ const Login: NextPage = () => {
   return (
     <div className='space-y-10 relative'>
       <Head>
-        <title>Linkedin Sign In</title>
+        <title>Sign In | LinkedIn</title>
       </Head>
       <LoginHeader />
       <LoginContent />
