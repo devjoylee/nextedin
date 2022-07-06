@@ -4,7 +4,7 @@ import { LoginHeader, LoginContent } from '@components/Login';
 
 const Login: NextPage = () => {
   return (
-    <div className='space-y-10 relative'>
+    <div className='space-y-10 relative h-full'>
       <Head>
         <title>Sign In | LinkedIn</title>
       </Head>

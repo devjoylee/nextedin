@@ -11,18 +11,22 @@ interface Props {
 export const HeaderLink = ({ text, Icon, user, login, active }: Props) => {
   return (
     <li
-      className={`cursor-pointer flex flex-col justify-center items-center opacity-70 hover:opacity-100 ${
+      className={`relative cursor-pointer flex flex-col justify-center items-center opacity-70 hover:opacity-100 ${
         active && 'opacity-100'
       }`}
     >
-      {Icon}
+      <div className='text-2xl'>{Icon}</div>
 
-      <span className={`text-sm ${!login && 'hidden lg:flex justify-center w-full mx-auto'}`}>
+      <p
+        className={`text-sm whitespace-nowrap ${
+          !login && 'hidden md:flex justify-center w-full mx-auto'
+        }`}
+      >
         {text}
-      </span>
+      </p>
 
       {active && (
-        <span className='hidden lg:inline-flex h-0.5 w-[calc(100%+20px)] bg-black rounded-t-full' />
+        <span className='hidden md:inline-flex h-0.5 w-[calc(100%+20px)] bg-black rounded-t-full absolute top-12' />
       )}
     </li>
   );

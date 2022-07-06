@@ -7,7 +7,7 @@ export const SearchBar = () => {
       <input
         type='text'
         placeholder='Search'
-        className='hidden md:inline-flex bg-transparent text-sm focus:outline-none placeholder-black/60 flex-grow ml-3'
+        className='hidden md:inline-flex bg-transparent text-sm focus:outline-none placeholder-black/60 w-full ml-3'
       />
     </div>
   );
