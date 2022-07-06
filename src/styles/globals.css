@@ -19,3 +19,82 @@
     @apply flex justify-between items-center hover:shadow-lg p-4 cursor-pointer rounded-lg text-black bg-white max-w-md mx-auto xl:mx-0;
   }
 }
+
+/* theme switching button */
+@layer components {
+  .theme-btn {
+    --white: theme(colors.black);
+    --black: theme(colors.white);
+    position: relative;
+    min-width: 60px;
+    height: 30px;
+    border-radius: 40px;
+  }
+
+  .theme-btn span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    opacity: 1;
+    background-color: var(--white);
+    border-radius: 40px;
+    transition: 0.2s ease background-color, 0.2s ease opacity;
+    box-shadow: rgb(0 0 0 / 10%) 0px 1px 3px;
+  }
+
+  .theme-btn span:before,
+  .theme-btn span:after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    transition: transform 0.5s ease, background-color 0.2s ease;
+  }
+
+  .theme-btn span:before {
+    background-color: var(--white);
+    transform: translate(13px, -4px);
+    z-index: 1;
+  }
+
+  .theme-btn span:after {
+    background-color: var(--black);
+    transform: translate(6px, 0px);
+    z-index: 0;
+  }
+
+  .theme-btn input[type='checkbox'] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 100;
+    cursor: pointer;
+  }
+
+  .theme-btn input[type='checkbox']:checked + span {
+    background-color: var(--black);
+  }
+
+  .theme-btn input[type='checkbox']:active + span {
+    opacity: 0.5;
+  }
+
+  .theme-btn input[type='checkbox']:checked + span:before {
+    background-color: var(--black);
+    transform: translate(60px, 0);
+  }
+
+  .theme-btn input[type='checkbox']:checked + span:after {
+    background-color: var(--white);
+    transform: translate(34px, 0px);
+  }
+}
