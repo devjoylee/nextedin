@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { FeedHeader, SideBar } from '@components/Feed';
+import { FeedHeader, PostInput, SideBar } from '@components/Feed';
 
 const Feed: NextPage = () => {
   return (
@@ -11,11 +11,14 @@ const Feed: NextPage = () => {
       <FeedHeader />
 
       <main className='flex justify-center gap-x-5 px-4 sm:px-12 '>
-        <div className='flex flex-col md:flex-row gap-x-5 px-4'>
+        <div className='flex flex-col md:flex-row md:gap-x-5 gap-y-5 px-4'>
           <SideBar />
-          {/* Feed */}
+
+          <div className='space-y-6 pb-24 max-w-lg'>
+            <PostInput />
+          </div>
+          {/* Widgets */}
         </div>
-        {/* Widgets */}
       </main>
     </div>
   );
