@@ -1,4 +1,4 @@
-export { FeedHeader } from './FeedHeader';
-export { SearchBar } from './SearchBar';
-export { ThemeButton } from './ThemeButton';
-export { SideBar } from './SideBar';
+export { FeedHeader } from './Header/FeedHeader';
+export { SearchBar } from './Header/SearchBar';
+export { ThemeButton } from './Header/ThemeButton';
+export { SideBar } from './Content/SideBar';
