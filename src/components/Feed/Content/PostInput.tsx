@@ -1,12 +1,19 @@
 import { Avatar } from '@components/Common';
+import { useSetRecoilState } from 'recoil';
+import { modalState } from '@atoms/modalAtom';
 import { BsImage, BsPlayBtnFill, BsCalendarDay, BsNewspaper } from 'react-icons/bs';
 
 export const PostInput = () => {
+  const setOpenModal = useSetRecoilState(modalState);
+
   return (
     <div className='bg-white dark:bg-black rounded-lg p-3 space-y-3 border border-gray-300 dark:border-none'>
       <div className='flex items-center space-x-2'>
         <Avatar src='' w='50' h='50' />
-        <button className='rounded-full border border-gray-400 py-2.5 px-3 opacity-80 hover:opacity-100 font-medium w-full text-left'>
+        <button
+          className='rounded-full border border-gray-400 py-2.5 px-3 opacity-80 hover:opacity-100 font-medium w-full text-left'
+          onClick={() => setOpenModal(true)}
+        >
           Start a post
         </button>
       </div>

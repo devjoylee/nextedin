@@ -1,8 +1,12 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useRecoilValue } from 'recoil';
+import { modalState } from '@atoms/modalAtom';
 import { FeedHeader, PostInput, PostModal, SideBar } from '@components/Feed';
 
 const Feed: NextPage = () => {
+  const openModal = useRecoilValue(modalState);
+
   return (
     <div className='space-y-10 relative h-full dark:bg-[#0d1117]'>
       <Head>
@@ -19,7 +23,7 @@ const Feed: NextPage = () => {
           </div>
           {/* Widgets */}
         </div>
-        <PostModal />
+        {openModal && <PostModal />}
       </main>
     </div>
   );
