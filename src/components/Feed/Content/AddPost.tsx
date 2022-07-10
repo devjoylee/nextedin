@@ -7,34 +7,34 @@ export const AddPost = () => {
   const setOpenModal = useSetRecoilState(modalState);
 
   return (
-    <div className='bg-white dark:bg-black rounded-lg p-3 space-y-3 border border-gray-300 dark:border-none'>
+    <div className='bg-white dark:bg-black rounded-lg p-3 pb-0 thm-border'>
       <div className='flex items-center space-x-2'>
         <Avatar src='' w='50' h='50' />
         <button
-          className='rounded-full border border-gray-400 py-2.5 px-3 opacity-80 hover:opacity-100 font-medium w-full text-left'
+          className='w-full px-4 py-3 rounded-full border border-gray-400 hover:bg-gray-200 hover:dark:bg-gray-600 text-sm text-left thm-text-gray '
           onClick={() => setOpenModal(true)}
         >
           Start a post
         </button>
       </div>
-      <div className='flex items-center flex-wrap gap-4 justify-center md:gap-x-10'>
-        <button className='inputButton group'>
+      <ul className='buttonWrapper'>
+        <li className='postButton group'>
           <BsImage className='text-[#0a66c2]' />
-          <p className='opacity-80 group-hover:opacity-100'>Photo</p>
-        </button>
-        <button className='inputButton group'>
+          <p>Photo</p>
+        </li>
+        <li className='postButton group'>
           <BsPlayBtnFill className='text-[#5f9b41]' />
-          <p className='opacity-80 group-hover:opacity-100'>Video</p>
-        </button>
-        <button className='inputButton group'>
+          <p>Video</p>
+        </li>
+        <li className='postButton group'>
           <BsCalendarDay className='text-[#c37d16]' />
-          <p className='opacity-80 group-hover:opacity-100'>Event</p>
-        </button>
-        <button className='inputButton group'>
+          <p>Event</p>
+        </li>
+        <li className='postButton group'>
           <BsNewspaper className='text-[#e16745]' />
-          <p className='opacity-80 group-hover:opacity-100 whitespace-nowrap'>Write Article</p>
-        </button>
-      </div>
+          <p className='whitespace-nowrap'>Write Article</p>
+        </li>
+      </ul>
     </div>
   );
 };

@@ -5,9 +5,9 @@ import Default from '@images/default-bg.jpg';
 
 export const SideBar = () => {
   return (
-    <div className='space-y-2 min-w-max max-w-lg'>
+    <div className='space-y-2 min-w-max md:max-w-lg'>
       {/* Top */}
-      <div className='bg-white dark:bg-[#1D2226] rounded-lg overflow-hidden relative flex flex-col items-center text-center border border-gray-300 dark:border-none'>
+      <div className='bg-white dark:bg-[#1D2226] rounded-lg overflow-hidden relative flex flex-col items-center text-center thm-border'>
         <div className='relative w-full h-14'>
           <Image src={Default} layout='fill' priority />
         </div>
@@ -16,7 +16,7 @@ export const SideBar = () => {
         </div>
         <div className='mt-5 py-4 space-x-0.5'>
           <p className='hover:underline decoration-purple-700 cursor-pointer'>name</p>
-          <p className='text-black/60 dark:text-white/75 text-sm'>email</p>
+          <p className='thm-text-gray text-sm'>email</p>
         </div>
 
         <div className='hidden md:inline text-left dark:text-white/75 text-sm'>
@@ -47,15 +47,15 @@ export const SideBar = () => {
       </div>
 
       {/* Bottom */}
-      <div className='hidden md:flex bg-white dark:bg-[#1D2226] text-black/70 dark:text-white/75 rounded-lg overflow-hidden flex-col space-y-2 pt-2.5 sticky top-20 border border-gray-300 dark:border-none'>
+      <div className='hidden md:flex bg-white dark:bg-[#1D2226] rounded-lg overflow-hidden flex-col space-y-2 pt-2.5 sticky top-20 thm-border'>
         <p className='sidebarLink'>Groups</p>
         <p className='sidebarLink flex items-center justify-between'>
           Events
-          <MdAdd className='h-5' color='black' />
+          <MdAdd className='h-5 thm-text-gray' />
         </p>
         <p className='sidebarLink'>Followed Hashtags</p>
         <div className='sidebarButton text-center'>
-          <p className='dark:text-white font-medium text-sm'>Discover More</p>
+          <p className='dark:text-white/75 font-medium text-sm'>Discover More</p>
         </div>
       </div>
     </div>

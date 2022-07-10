@@ -13,7 +13,7 @@ export const PostModal = () => {
 
   const uploadPost = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setNewPost((prev) => [...prev, { text: text, image: image }]);
+    setNewPost((prev) => [{ text: text, image: image }, ...prev]);
     closeModal();
   };
 
@@ -23,7 +23,7 @@ export const PostModal = () => {
     <div className='overlay' onClick={closeModal}>
       <div
         onClick={(e) => e.stopPropagation()}
-        className='rounded-xl bg-white dark:bg-black w-full max-w-lg md:mt-[-22rem] mx-6  dark:text-white/75'
+        className='rounded-xl bg-white dark:bg-black w-full max-w-lg md:mt-[-22rem] mx-6  dark:text-white/75 border border-gray-400'
       >
         <div className='flex items-center justify-between border-b border-gray/75 px-4 py-3'>
           <h3 className='text-xl'>Create a post</h3>

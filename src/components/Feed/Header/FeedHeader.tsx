@@ -13,8 +13,6 @@ export const FeedHeader = () => {
 
   useEffect(() => setMounted(true), []);
 
-  console.log(theme);
-
   return (
     <header className='sticky top-0 z-40 bg-white dark:bg-black py-2'>
       <div className='max-w-screen-lg mx-auto flex items-center justify-around md:justify-between px-3'>
