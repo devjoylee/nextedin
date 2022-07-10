@@ -3,7 +3,7 @@ import { useSetRecoilState } from 'recoil';
 import { modalState } from '@atoms/modalAtom';
 import { BsImage, BsPlayBtnFill, BsCalendarDay, BsNewspaper } from 'react-icons/bs';
 
-export const PostInput = () => {
+export const AddPost = () => {
   const setOpenModal = useSetRecoilState(modalState);
 
   return (

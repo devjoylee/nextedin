@@ -1,10 +1,22 @@
+import { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { modalState } from '@atoms/modalAtom';
+import { postListState } from '@atoms/postAtom';
 import { Avatar } from '@components/Common';
 import { MdClose } from 'react-icons/md';
-import { useSetRecoilState } from 'recoil';
 
 export const PostModal = () => {
+  const [text, setText] = useState('');
+  const [image, setImage] = useState('');
   const setModal = useSetRecoilState(modalState);
+  const setNewPost = useSetRecoilState(postListState);
+
+  const uploadPost = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setNewPost((prev) => [...prev, { text: text, image: image }]);
+    closeModal();
+  };
+
   const closeModal = () => setModal(false);
 
   return (
@@ -25,27 +37,26 @@ export const PostModal = () => {
             <Avatar src='' w='30' h='30' />
             <p>name</p>
           </div>
-          <form className='mt-3' onClick={(e) => e.preventDefault()}>
+          <form className='mt-3' onSubmit={uploadPost}>
             <textarea
               rows={4}
               placeholder='What do you want to talk about?'
               className='bg-transparent focus:outline-none w-full'
-              // value={input}
-              // onChange={(e) => setInput(e.target.value)}
+              value={text}
+              onChange={(e) => setText(e.target.value)}
             />
             <div className='flex justify-between'>
               <input
                 type='text'
                 placeholder='Add a photo URL (optional)'
                 className='bg-transparent focus:outline-none truncate max-w-xs md:max-w-sm'
-                // value={photoUrl}
-                // onChange={(e) => setPhotoUrl(e.target.value)}
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
               />
               <button
-                className='font-medium bg-blue-400 hover:bg-blue-500 text-white rounded-full px-3.5 py-1'
+                className='bg-blue-400 hover:bg-blue-500 text-white rounded-full px-3.5 py-1 cursor-pointer disabled:bg-black/30'
                 type='submit'
-                // onClick={uploadPost}
-                // disabled={!input.trim() && !photoUrl.trim()}
+                disabled={!text.trim() && !image.trim()}
               >
                 Post
               </button>
