@@ -3,3 +3,4 @@ export { SearchBar } from './Header/SearchBar';
 export { ThemeButton } from './Header/ThemeButton';
 export { SideBar } from './Content/SideBar';
 export { PostInput } from './Content/PostInput';
+export { PostModal } from './Modal/PostModal';

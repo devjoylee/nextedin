@@ -27,6 +27,9 @@
   .inputButton {
     @apply flex items-center space-x-2 font-medium cursor-pointer text-sm;
   }
+  .overlay {
+    @apply absolute top-0 left-0 h-full w-full bg-black/70 flex items-center justify-center z-50;
+  }
 }
 
 /* theme switching button */

@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { FeedHeader, PostInput, SideBar } from '@components/Feed';
+import { FeedHeader, PostInput, PostModal, SideBar } from '@components/Feed';
 
 const Feed: NextPage = () => {
   return (
@@ -19,6 +19,7 @@ const Feed: NextPage = () => {
           </div>
           {/* Widgets */}
         </div>
+        <PostModal />
       </main>
     </div>
   );
