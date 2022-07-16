@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { LoginHeader, LoginContent } from '@components/Login';
 
-const Login: NextPage = () => {
+const Home: NextPage = () => {
   return (
     <div className='space-y-10 relative h-full'>
       <Head>
@@ -14,4 +14,4 @@ const Login: NextPage = () => {
   );
 };
 
-export default Login;
+export default Home;
