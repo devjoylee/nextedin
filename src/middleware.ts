@@ -13,6 +13,7 @@ export const middleware = async (req: NextRequest) => {
     // You could also check for any property on the session object,
     // like role === "admin" or name === "John Doe", etc.
     if (!session) return NextResponse.redirect(`${origin}/home`);
+    else return NextResponse.redirect(`${origin}/feed`);
     // If user is authenticated, continue.
   }
 };

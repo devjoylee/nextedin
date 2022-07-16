@@ -1,9 +1,11 @@
+import { signIn } from 'next-auth/react';
 import { MdPeopleAlt, MdOutlineSmartDisplay } from 'react-icons/md';
 import { IoMdBriefcase, IoMdCompass } from 'react-icons/io';
 import { HeaderLink } from '@components/Common';
 import { WideLogo } from '@images';
+import { ProviderType } from '@pages/home';
 
-export const LoginHeader = () => {
+export const LoginHeader = ({ providers }: ProviderType) => {
   return (
     <header className='flex justify-around items-center py-4'>
       <div className='relative w-36 cursor-pointer'>
@@ -16,11 +18,19 @@ export const LoginHeader = () => {
           <HeaderLink text='Learning' Icon={<MdOutlineSmartDisplay />} login />
           <HeaderLink text='Jobs' Icon={<IoMdBriefcase />} login />
         </ul>
-        <div className='pl-4'>
-          <button className='text-blue-700 font-semibold rounded-full border border-blue-700 px-5 py-1.5'>
-            Sign In
-          </button>
-        </div>
+
+        {Object.values(providers).map((provider: any) => (
+          <div key={provider.name}>
+            <div className='pl-4'>
+              <button
+                className='text-blue-700 font-semibold rounded-full border border-blue-700 px-5 py-1.5'
+                onClick={() => signIn(provider.id, { callbackUrl: '/' })}
+              >
+                Sign In
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </header>
   );
