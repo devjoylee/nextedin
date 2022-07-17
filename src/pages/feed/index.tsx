@@ -1,11 +1,13 @@
-import type { NextPage } from 'next';
 import Head from 'next/head';
+import type { NextPage } from 'next';
 import { useRecoilValue } from 'recoil';
+import { getSession, useSession } from 'next-auth/react';
 import { modalState } from '@atoms/modalAtom';
 import * as C from '@components/Feed';
 
 const Feed: NextPage = () => {
   const openModal = useRecoilValue(modalState);
+  const { data: session } = useSession();
 
   return (
     <div className='relative min-h-full dark:bg-[#0d1117]'>
@@ -31,3 +33,17 @@ const Feed: NextPage = () => {
 };
 
 export default Feed;
+
+export const getServerSideProps = async (context: any) => {
+  // Check if the user is authenticated on the sever...
+  const session = await getSession(context);
+
+  return session
+    ? { props: { session } }
+    : {
+        redirect: {
+          permanent: false,
+          destination: '/home',
+        },
+      };
+};

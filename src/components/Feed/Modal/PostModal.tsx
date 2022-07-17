@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { useSetRecoilState } from 'recoil';
 import { modalState } from '@atoms/modalAtom';
 import { postListState } from '@atoms/postAtom';
@@ -6,6 +7,9 @@ import { Avatar } from '@components/Common';
 import { MdClose } from 'react-icons/md';
 
 export const PostModal = () => {
+  const { data: session } = useSession();
+  const { image: profile, name } = session?.user!;
+
   const [text, setText] = useState('');
   const [image, setImage] = useState('');
   const setModal = useSetRecoilState(modalState);
@@ -13,8 +17,16 @@ export const PostModal = () => {
 
   const uploadPost = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setNewPost((prev) => [{ text: text, image: image }, ...prev]);
     closeModal();
+    setNewPost((prev) => [
+      {
+        text: text,
+        image: image,
+        profile: profile as string,
+        name: name as string,
+      },
+      ...prev,
+    ]);
   };
 
   const closeModal = () => setModal(false);
@@ -34,8 +46,8 @@ export const PostModal = () => {
 
         <div className='p-4'>
           <div className='flex items-center space-x-2'>
-            <Avatar src='' w='30' h='30' />
-            <p>name</p>
+            <Avatar src={profile as string} w='30' h='30' />
+            <p>{name}</p>
           </div>
           <form className='mt-3' onSubmit={uploadPost}>
             <textarea

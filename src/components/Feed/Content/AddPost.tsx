@@ -1,15 +1,17 @@
-import { Avatar } from '@components/Common';
+import { useSession } from 'next-auth/react';
 import { useSetRecoilState } from 'recoil';
+import { Avatar } from '@components/Common';
 import { modalState } from '@atoms/modalAtom';
 import { BsImage, BsPlayBtnFill, BsCalendarDay, BsNewspaper } from 'react-icons/bs';
 
 export const AddPost = () => {
+  const { data: session } = useSession();
   const setOpenModal = useSetRecoilState(modalState);
 
   return (
     <div className='bg-white dark:bg-black rounded-lg p-3 pb-0 thm-border'>
       <div className='flex items-center space-x-2'>
-        <Avatar src='' w='50' h='50' />
+        <Avatar src={session?.user?.image as string} w='50' h='50' />
         <button
           className='w-full px-4 py-3 rounded-full border border-gray-400 hover:bg-gray-200 hover:dark:bg-gray-600 text-sm text-left thm-text-gray '
           onClick={() => setOpenModal(true)}

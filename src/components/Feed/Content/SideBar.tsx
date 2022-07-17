@@ -1,9 +1,13 @@
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
 import { Avatar } from '@components/Common';
 import { MdBookmark, MdAdd } from 'react-icons/md';
 import Default from '@images/default-bg.jpg';
 
 export const SideBar = () => {
+  const { data: session } = useSession();
+  const { image: profile, name, email } = session?.user!;
+
   return (
     <div className='space-y-2 min-w-max md:max-w-lg'>
       {/* Top */}
@@ -12,11 +16,11 @@ export const SideBar = () => {
           <Image src={Default} layout='fill' priority />
         </div>
         <div className='flex outline outline-2 outline-white rounded-full absolute top-6'>
-          <Avatar src='' w='60' h='60' />
+          <Avatar src={profile as string} w='60' h='60' />
         </div>
         <div className='mt-5 py-4 space-x-0.5'>
-          <p className='hover:underline decoration-purple-700 cursor-pointer'>name</p>
-          <p className='thm-text-gray text-sm'>email</p>
+          <p className='hover:underline decoration-purple-700 cursor-pointer'>{name}</p>
+          <p className='thm-text-gray text-sm'>{email}</p>
         </div>
 
         <div className='hidden md:inline text-left dark:text-white/75 text-sm'>
