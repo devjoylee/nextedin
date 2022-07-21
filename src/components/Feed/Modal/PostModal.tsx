@@ -15,18 +15,27 @@ export const PostModal = () => {
   const setModal = useSetRecoilState(modalState);
   const setNewPost = useSetRecoilState(postListState);
 
-  const uploadPost = (e: React.FormEvent<HTMLFormElement>) => {
+  const uploadPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    closeModal();
-    setNewPost((prev) => [
-      {
+
+    const response = await fetch('/api/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
         text: text,
         image: image,
         profile: profile as string,
         name: name as string,
-      },
-      ...prev,
-    ]);
+        createAt: new Date().toString(),
+      }),
+    });
+
+    const responseData = await response.json();
+    console.log(responseData);
+
+    closeModal();
   };
 
   const closeModal = () => setModal(false);
