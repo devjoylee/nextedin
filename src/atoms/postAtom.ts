@@ -1,7 +1,11 @@
-import { Post } from '@types';
 import { atom } from 'recoil';
 
-export const postListState = atom({
-  key: 'postListState',
-  default: [{ text: '하하', image: '' }] as Post[],
+export const loadPostState = atom({
+  key: 'loadPostState',
+  default: false,
+});
+
+export const SSRPostState = atom({
+  key: 'SSRPostState',
+  default: true,
 });

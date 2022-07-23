@@ -2,5 +2,7 @@ export interface Post {
   text: string;
   image: string;
   profile: string;
-  name: string;
+  username: string;
+  createAt: string;
+  _id: string;
 }

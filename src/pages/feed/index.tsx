@@ -1,13 +1,15 @@
 import Head from 'next/head';
-import type { NextPage } from 'next';
+import type { InferGetServerSidePropsType, NextPage } from 'next';
 import { useRecoilValue } from 'recoil';
-import { getSession, useSession } from 'next-auth/react';
+import { getSession } from 'next-auth/react';
 import { modalState } from '@atoms/modalAtom';
 import * as C from '@components/Feed';
+import { connectDB } from '@utils/connectDB';
 
-const Feed: NextPage = () => {
+export type ProviderType = InferGetServerSidePropsType<typeof getServerSideProps>;
+
+const Feed: NextPage = ({ posts }: ProviderType) => {
   const openModal = useRecoilValue(modalState);
-  const { data: session } = useSession();
 
   return (
     <div className='relative min-h-full dark:bg-[#0d1117]'>
@@ -22,7 +24,7 @@ const Feed: NextPage = () => {
 
           <div className='md:max-w-xl w-full'>
             <C.AddPost />
-            <C.PostList />
+            <C.PostList posts={posts} />
           </div>
           {/* Widgets */}
         </div>
@@ -38,8 +40,24 @@ export const getServerSideProps = async (context: any) => {
   // Check if the user is authenticated on the sever...
   const session = await getSession(context);
 
+  // Get posts on SSR
+  const { db } = await connectDB();
+  const posts = await db.collection('posts').find().sort({ timestamp: -1 }).toArray();
+
   return session
-    ? { props: { session } }
+    ? {
+        props: {
+          session,
+          posts: posts.map((post) => ({
+            _id: post._id.toString(),
+            text: post.text,
+            image: post.image,
+            profile: post.profile,
+            username: post.username,
+            createAt: post.createAt,
+          })),
+        },
+      }
     : {
         redirect: {
           permanent: false,

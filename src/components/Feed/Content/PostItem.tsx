@@ -11,14 +11,14 @@ interface Props {
 
 export const PostItem = ({ post }: Props) => {
   const [liked, setLiked] = useState(false);
-  const { name, profile, image, text } = post;
+  const { username, profile, image, text } = post;
 
   return (
     <div className='bg-white dark:bg-black rounded-lg space-y-2 p-2.5 pb-0 thm-border'>
       <div className='flex items-center cursor-pointer'>
         <Avatar src={profile} w='40' h='40' />
         <div className='ml-2 leading-none'>
-          <p className='font-medium hover:text-blue-500 hover:underline'>{name}</p>
+          <p className='font-medium hover:text-blue-500 hover:underline'>{username}</p>
           <span className='text-xs thm-text-gray'>createAt</span>
         </div>
       </div>

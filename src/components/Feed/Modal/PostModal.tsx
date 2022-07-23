@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useSetRecoilState } from 'recoil';
 import { modalState } from '@atoms/modalAtom';
-import { postListState } from '@atoms/postAtom';
+import { loadPostState } from '@atoms/postAtom';
 import { Avatar } from '@components/Common';
 import { MdClose } from 'react-icons/md';
 
@@ -13,7 +13,7 @@ export const PostModal = () => {
   const [text, setText] = useState('');
   const [image, setImage] = useState('');
   const setModal = useSetRecoilState(modalState);
-  const setNewPost = useSetRecoilState(postListState);
+  const setLoadPost = useSetRecoilState(loadPostState);
 
   const uploadPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,7 +27,7 @@ export const PostModal = () => {
         text: text,
         image: image,
         profile: profile as string,
-        name: name as string,
+        username: name as string,
         createAt: new Date().toString(),
       }),
     });
@@ -36,6 +36,7 @@ export const PostModal = () => {
     console.log(responseData);
 
     closeModal();
+    setLoadPost(true);
   };
 
   const closeModal = () => setModal(false);

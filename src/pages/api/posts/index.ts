@@ -1,6 +1,5 @@
 import { connectDB } from '@utils/connectDB';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Timestamp } from 'mongodb';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { method, body } = req;
@@ -20,8 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       const post = await db.collection('posts').insertOne({
         ...body,
-        timestamp: Timestamp,
-        // timestamp: new Timestamp(),
+        timestamp: new Date().getTime(), // add post time
       });
       res.status(201).json(post);
     } catch (error) {
