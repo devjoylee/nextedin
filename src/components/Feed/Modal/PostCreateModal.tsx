@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useSetRecoilState } from 'recoil';
 import { modalState } from '@atoms/modalAtom';
@@ -14,6 +14,7 @@ export const PostCreateModal = () => {
   const [image, setImage] = useState('');
   const setModal = useSetRecoilState(modalState);
   const setLoadPost = useSetRecoilState(loadPostState);
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const uploadPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,13 +40,20 @@ export const PostCreateModal = () => {
     setLoadPost(true);
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setText(e.target.value);
+    if (textAreaRef.current) {
+      textAreaRef.current.style.height = 'auto';
+      textAreaRef.current.style.height = textAreaRef.current.scrollHeight + 'px';
+    }
+  };
   const closeModal = () => setModal(false);
 
   return (
     <div className='overlay' onClick={closeModal}>
       <div
         onClick={(e) => e.stopPropagation()}
-        className='rounded-xl bg-white dark:bg-black w-full max-w-lg md:mt-[-22rem] mx-6  dark:text-white/75 border border-gray-400'
+        className='rounded-xl bg-white dark:bg-black w-full max-w-lg dark:text-white/75 border border-gray-400 absolute top-12'
       >
         <div className='flex items-center justify-between border-b border-gray/75 px-4 py-3'>
           <h3 className='text-xl'>Create a post</h3>
@@ -63,15 +71,16 @@ export const PostCreateModal = () => {
             <textarea
               rows={4}
               placeholder='What do you want to talk about?'
-              className='bg-transparent focus:outline-none w-full'
+              className='bg-transparent focus:outline-none w-full resize-none max-h-[250px]'
               value={text}
-              onChange={(e) => setText(e.target.value)}
+              onChange={handleChange}
+              ref={textAreaRef}
             />
             <div className='flex justify-between'>
               <input
                 type='text'
                 placeholder='Add a photo URL (optional)'
-                className='bg-transparent focus:outline-none truncate max-w-xs md:max-w-sm'
+                className='focus:outline-none truncate flex-1 mr-1'
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               />
