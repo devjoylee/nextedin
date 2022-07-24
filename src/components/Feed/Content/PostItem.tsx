@@ -4,6 +4,7 @@ import { Post } from '@types';
 import { FaThumbsUp, FaRegThumbsUp, FaRegCommentDots } from 'react-icons/fa';
 import { MdOutlineShare } from 'react-icons/md';
 import { RiSendPlaneFill } from 'react-icons/ri';
+import moment from 'moment';
 
 interface Props {
   post: Post;
@@ -11,15 +12,17 @@ interface Props {
 
 export const PostItem = ({ post }: Props) => {
   const [liked, setLiked] = useState(false);
-  const { username, profile, image, text } = post;
+  const { username, profile, image, text, createAt } = post;
 
   return (
-    <div className='bg-white dark:bg-black rounded-lg space-y-2 p-2.5 pb-0 thm-border'>
-      <div className='flex items-center cursor-pointer'>
+    <div className='bg-white dark:bg-black rounded-lg space-y-2 thm-border'>
+      <div className='flex items-center p-2.5 pb-0'>
         <Avatar src={profile} w='40' h='40' />
         <div className='ml-2 leading-none'>
-          <p className='font-medium hover:text-blue-500 hover:underline'>{username}</p>
-          <span className='text-xs thm-text-gray'>createAt</span>
+          <p className='font-medium hover:text-blue-500 hover:underline cursor-pointer mt-1'>
+            {username}
+          </p>
+          <span className='text-xs thm-text-gray'>{moment(createAt).fromNow()}</span>
         </div>
       </div>
 
@@ -29,7 +32,7 @@ export const PostItem = ({ post }: Props) => {
 
       {image && <img src={image} alt='' className='w-full cursor-pointer' />}
 
-      <ul className='buttonWrapper border-t border-gray-600/20 '>
+      <ul className='buttonWrapper border-t border-gray-200 dark:border-gray-700 px-2.5'>
         <li className={`postButton ${liked && 'text-blue-500'}`} onClick={() => setLiked(!liked)}>
           {liked ? (
             <FaThumbsUp className='-scale-x-100' />
