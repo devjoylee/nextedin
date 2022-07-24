@@ -12,6 +12,7 @@ interface Props {
 
 export const PostItem = ({ post }: Props) => {
   const [liked, setLiked] = useState(false);
+  const [truncText, setTruncText] = useState(true);
   const { username, profile, image, text, createAt } = post;
 
   return (
@@ -26,8 +27,16 @@ export const PostItem = ({ post }: Props) => {
         </div>
       </div>
 
-      <div className='break-all md:break-normal'>
-        <p>{text}</p>
+      <div className='break-all md:break-normal px-2.5 relative'>
+        <p className={`leading-snug	${truncText && 'trunc'}`}>{text}</p>
+        {truncText && text.length > 120 && (
+          <button
+            className='absolute pr-2.5 bg-white bottom-[-2px] right-0 text-black/60 hover:text-blue-500 hover:underline'
+            onClick={() => setTruncText((prev) => !prev)}
+          >
+            ...see more
+          </button>
+        )}
       </div>
 
       {image && <img src={image} alt='' className='w-full cursor-pointer' />}

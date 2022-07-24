@@ -39,6 +39,13 @@
   .postButton svg {
     @apply text-lg;
   }
+  .trunc {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: normal;
+  }
 }
 
 /* theme style */
