@@ -13,6 +13,7 @@ export const PostList = ({ posts }: Props) => {
   const [loadPost, setLoadPost] = useRecoilState(loadPostState);
   const [SSRPost, setSSRPost] = useRecoilState(SSRPostState);
 
+  // Get Post
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch('/api/posts', {
