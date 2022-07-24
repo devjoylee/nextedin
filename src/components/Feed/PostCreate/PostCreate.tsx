@@ -4,7 +4,7 @@ import { Avatar } from '@components/Common';
 import { modalState } from '@atoms/modalAtom';
 import { BsImage, BsPlayBtnFill, BsCalendarDay, BsNewspaper } from 'react-icons/bs';
 
-export const AddPost = () => {
+export const PostCreate = () => {
   const { data: session } = useSession();
   const setOpenModal = useSetRecoilState(modalState);
 

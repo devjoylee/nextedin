@@ -23,12 +23,12 @@ const Feed: NextPage = ({ posts }: ProviderType) => {
           <C.SideBar />
 
           <div className='md:max-w-xl w-full'>
-            <C.AddPost />
+            <C.PostCreate />
             <C.PostList posts={posts} />
           </div>
           {/* Widgets */}
         </div>
-        {openModal && <C.PostModal />}
+        {openModal && <C.PostCreateModal />}
       </main>
     </div>
   );

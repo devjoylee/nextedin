@@ -6,7 +6,7 @@ import { loadPostState } from '@atoms/postAtom';
 import { Avatar } from '@components/Common';
 import { MdClose } from 'react-icons/md';
 
-export const PostModal = () => {
+export const PostCreateModal = () => {
   const { data: session } = useSession();
   const { image: profile, name } = session?.user!;
 

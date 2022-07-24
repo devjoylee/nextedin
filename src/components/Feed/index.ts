@@ -1,8 +1,8 @@
 export { FeedHeader } from './Header/FeedHeader';
 export { SearchBar } from './Header/SearchBar';
 export { ThemeButton } from './Header/ThemeButton';
-export { SideBar } from './Content/SideBar';
-export { AddPost } from './Content/AddPost';
-export { PostList } from './Content/PostList';
-export { PostItem } from './Content/PostItem';
-export { PostModal } from './Modal/PostModal';
+export { SideBar } from './SideBar/SideBar';
+export { PostCreate } from './PostCreate/PostCreate';
+export { PostList } from './PostList/PostList';
+export { PostItem } from './PostList/PostItem';
+export { PostCreateModal } from './Modal/PostCreateModal';
