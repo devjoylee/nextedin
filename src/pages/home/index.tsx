@@ -1,16 +1,14 @@
 import { getProviders } from 'next-auth/react';
 import type { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next';
-import Head from 'next/head';
 import { LoginHeader, LoginContent } from '@components/Login';
+import { SEO } from '@components/Common';
 
 export type ProviderType = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 const Home: NextPage = ({ providers }: ProviderType) => {
   return (
     <div className='space-y-10 relative h-full'>
-      <Head>
-        <title>Sign In | LinkedIn</title>
-      </Head>
+      <SEO title='Sign In' />
       <LoginHeader providers={providers} />
       <LoginContent />
     </div>

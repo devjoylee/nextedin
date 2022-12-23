@@ -1,10 +1,10 @@
-import Head from 'next/head';
 import type { InferGetServerSidePropsType, NextPage } from 'next';
 import { useRecoilValue } from 'recoil';
 import { getSession } from 'next-auth/react';
 import { modalState } from '@atoms/modalAtom';
 import * as C from '@components/Feed';
 import { connectDB } from '@utils/connectDB';
+import { SEO } from '@components/Common';
 
 export type ProviderType = InferGetServerSidePropsType<typeof getServerSideProps>;
 
@@ -12,10 +12,8 @@ const Feed: NextPage = ({ posts }: ProviderType) => {
   const openModal = useRecoilValue(modalState);
 
   return (
-    <div className='relative min-h-full dark:bg-[#0d1117]'>
-      <Head>
-        <title>Feed | LinkedIn</title>
-      </Head>
+    <div className='relative min-h-full dark:bg-[#0d1117] ease-out duration-200'>
+      <SEO title='Feed' />
       <C.FeedHeader />
 
       <main className='max-w-screen-lg mx-auto py-10'>
